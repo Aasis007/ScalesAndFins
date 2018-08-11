@@ -61,7 +61,10 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        getSupportActionBar().setTitle("Home");
+        fragmentManager.beginTransaction().replace(R.id.content_main,new Home_fragment())
+                .commit();
 
     }
 

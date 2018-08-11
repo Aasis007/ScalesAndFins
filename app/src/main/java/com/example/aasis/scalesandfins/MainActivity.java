@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
             final android.app.AlertDialog alertDialog = new SpotsDialog(MainActivity.this);
             alertDialog.show();
             alertDialog.setMessage("Please Wait...");
+            //auto login
+
             AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
                 @Override
                 public void onSuccess(final Account account) {
@@ -70,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onResponse(@NonNull Call<CheckUserResponse> call, @NonNull Response<CheckUserResponse> response) {
                                     CheckUserResponse userResponse = response.body();
-                                    assert userResponse != null;
                                     if (userResponse.isExists())
                                     {
                                         //fetch user info
@@ -81,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
 
                                                         //if user exist
                                                         alertDialog.dismiss();
-
                                                         Common.currentuUser = response.body();
                                                         startActivity(new Intent(MainActivity.this,HomeActivity.class));
                                                         finish();
@@ -165,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
                                             @Override
                                             public void onResponse(@NonNull Call<CheckUserResponse> call, @NonNull Response<CheckUserResponse> response) {
                                                 CheckUserResponse userResponse = response.body();
-                                                assert userResponse != null;
                                                 if (userResponse.isExists())
                                                 {
                                                     //fetch user info
@@ -290,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
 
                                                                     Toast.makeText(MainActivity.this, "Registered Successfuly", Toast.LENGTH_SHORT).show();
 
-                                                                    Common.currentuUser = response.body();
+
                                                                     startActivity(new Intent(MainActivity.this,HomeActivity.class));
                                                                     finish();
                                                                 }
